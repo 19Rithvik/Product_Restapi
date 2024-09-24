@@ -11,11 +11,7 @@ from typing import Optional, List
 logging.basicConfig(level=logging.INFO)
 
 # Database setup - store SQLite database in /tmp directory
-if os.getenv("ENV") == "production":
-    DATABASE_URL = os.getenv("DATABASE_URL")  # Cloud DB URL
-else:
-    DATABASE_URL = "sqlite:///./tmp/test.db"
-# DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./tmp/test.db")  # Update this line
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./tmp/test.db")  # Update this line
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
