@@ -11,7 +11,7 @@ from typing import Optional, List
 logging.basicConfig(level=logging.INFO)
 
 # Database setup - store SQLite database in /tmp directory
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./tmp/test.db")  # Update this line
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./tmp/test.db")
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
@@ -32,7 +32,7 @@ class Product(Base):
     description = Column(String, nullable=True)
     category = Column(String, nullable=True)
 
-    __table_args__ = (UniqueConstraint('name', name='uq_product_name'),)  # Unique constraint
+    __table_args__ = (UniqueConstraint('name', name='uq_product_name'),)
 
 # Pydantic Model for Product Schema (Create)
 class ProductCreate(BaseModel):
