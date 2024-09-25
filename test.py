@@ -167,8 +167,7 @@ def test_list_products():
     assert response.status_code == 200
     updated_data = response.json()
     
-    # Ensure the total number of products now equals initial count + 2
-    assert len(updated_data) == initial_count + 2  # Ensure total products count increased
+    assert len(updated_data) == initial_count + 2 
 
     # List products with price filter
     response = client.get("/products/?price_gte=15")
@@ -185,9 +184,9 @@ def test_list_products():
         print(product)
     
     # Assert that the API response matches expected products
-    assert len(data) == len(expected_products)  # Ensure the length matches
+    assert len(data) == len(expected_products)  
     for product in data:
-        assert product in expected_products  # Ensure each returned product is in expected products
+        assert product in expected_products
 
 
 def test_invalid_product_creation():
@@ -214,7 +213,7 @@ def test_invalid_product_creation():
 
     response = client.post("/products/", json=incomplete_product_data)
     print(f"Status Code: {response.status_code}, Response: {response.json()}")
-    assert response.status_code == 422  # Unprocessable Entity (missing required fields)
+    assert response.status_code == 422  # missing required fields
 
 # Run the tests
 if __name__ == "__main__":
