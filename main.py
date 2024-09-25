@@ -147,8 +147,3 @@ def list_products(price_gte: Optional[float] = Query(None, ge=0), db: Session = 
     
     # Handle empty list response gracefully
     return products if products else []
-
-# Run the application if the script is executed directly
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
